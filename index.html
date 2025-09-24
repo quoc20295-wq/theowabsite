@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLASSPHORIA - Transformed Glass Art</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #2c3e50;
+            --accent-color: #6dd5ed;
+            --glass: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255,255,255,0.2);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+            color: var(--main-color);
+        }
+        header {
+            background: rgba(255,255,255,0.95);
+            box-shadow: var(--shadow);
+            padding: 0 0 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 14px 20px 0 20px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+        .logo-area img {
+            height: 56px;
+            width: auto;
+            margin-right: 18px;
+        }
+        .site-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--main-color);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 26px;
+            margin: 0;
+            padding: 0;
+        }
+        nav a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--main-color);
+            font-family: 'Montserrat',sans-serif;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #37acc4;
+        }
+        .slogan {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #426682;
+            font-style: italic;
+            margin-top: 2px;
+            margin-bottom: 8px;
+        }
+        .banner {
+            max-width: 1100px;
+            margin: 38px auto 34px auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            background: linear-gradient(135deg, #e0eafc 70%, #6dd5ed 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 220px;
+            position: relative;
+        }
+        .banner-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            opacity: 0.84;
+            filter: blur(0.5px);
+        }
+        .banner-content {
+            position: absolute;
+            left: 0; right: 0; top: 0; bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #20405e;
+            text-shadow: 0 2px 8px #fff9;
+            pointer-events: none;
+        }
+        .banner-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-family: 'Montserrat',sans-serif;
+        }
+        .banner-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            color: #28657B;
+            margin: 54px 0 28px 0;
+            letter-spacing: 1px;
+        }
+        .products-grid {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 32px;
+        }
+        .product-card {
+            background: var(--glass);
+            border: 1.5px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform 0.22s, box-shadow 0.22s;
+            backdrop-filter: blur(6px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 375px;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.035);
+            box-shadow: 0 12px 36px 0 rgba(31, 38, 135, 0.27);
+            z-index: 2;
+        }
+        .product-img {
+            width: 100%;
+            max-height: 210px;
+            object-fit: cover;
+            background: #eaf6ff;
+            border-bottom: 1px solid #c9e4f7;
+        }
+        .product-info {
+            padding: 16px 18px 20px 18px;
+            text-align: center;
+        }
+        .product-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.13rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .product-desc {
+            font-size: 1rem;
+            color: #36586C;
+            min-height: 44px;
+        }
+        .product-contact {
+            margin-top: 10px;
+            font-size: 0.97rem;
+        }
+        .product-contact a {
+            color: #2d97b7;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        /* About */
+        .about-section {
+            max-width: 900px;
+            margin: 0 auto 54px auto;
+            background: var(--glass);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            padding: 34px 22px;
+            font-size: 1.08rem;
+            color: #294a5a;
+        }
+        /* Contact */
+        .contact-section {
+            max-width: 900px;
+            margin: 0 auto 54px auto;
+            background: var(--glass);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            padding: 34px 22px;
+            font-size: 1.08rem;
+            color: #294a5a;
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            color: #8ca3b2;
+            font-size: 1rem;
+            padding: 28px 0 12px 0;
+            background: rgba(255,255,255,0.7);
+            margin-top: 24px;
+            border-top: 1px solid #eaf6ff;
+        }
+        /* Responsive */
+        @media (max-width: 800px) {
+            .navbar, .banner, .products-grid, .about-section, .contact-section {
+                max-width: 98vw;
+                padding-left: 0; padding-right: 0;
+            }
+            .banner-content h2 { font-size: 1.5rem;}
+            .section-title { font-size: 1.3rem;}
+        }
+        @media (max-width: 600px) {
+            .navbar { flex-direction: column; gap: 12px;}
+            .logo-area img { height: 38px;}
+            .site-title { font-size: 1.1rem;}
+            .banner-content h2 { font-size: 1.1rem;}
+            .banner { min-height: 120px;}
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="navbar">
+            <div class="logo-area">
+                <img src="logo.png" alt="GLASSPHORIA Logo">
+                <span class="site-title">GLASSPHORIA</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Trang chủ</a></li>
+                    <li><a href="#products">Bộ sưu tập</a></li>
+                    <li><a href="#about">Giới thiệu</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="slogan">Transformed Glass Art</div>
+    </header>
+    <!-- BANNER -->
+    <section id="home" class="banner">
+        <img src="logo.png" alt="Nghệ thuật thủy tinh" class="banner-img">
+        <div class="banner-content">
+            <h2>Khám phá nghệ thuật thủy tinh biến hóa độc đáo</h2>
+            <p>GLASSPHORIA mang đến những tác phẩm nghệ thuật thủy tinh được chế tác thủ công, sáng tạo – từ các vật phẩm trang trí, tranh kính, chân nến đến mô hình độc bản. Mỗi sản phẩm là một câu chuyện nghệ thuật lung linh, duy nhất.</p>
+        </div>
+    </section>
+    <!-- PRODUCTS -->
+    <div id="products">
+        <div class="section-title">Bộ Sưu Tập Sản Phẩm</div>
+        <div class="products-grid">
+            <!-- 1 -->
+            <div class="product-card">
+                <img class="product-img" src="product3.jpg" alt="Quả cầu vũ trụ thủy tinh">
+                <div class="product-info">
+                    <div class="product-title">Quả cầu vũ trụ</div>
+                    <div class="product-desc">Trang trí treo lấy cảm hứng từ các hành tinh, tạo hiệu ứng ánh sáng lung linh độc đáo.</div>
+                </div>
+            </div>
+            <!-- 2 -->
+            <div class="product-card">
+                <img class="product-img" src="product1.jpg" alt="Tranh Love Poison">
+                <div class="product-info">
+                    <div class="product-title">Tranh Love Poison</div>
+                    <div class="product-desc">Tranh kính nghệ thuật với chủ đề tình yêu, nổi bật bằng mảnh kính màu thủ công.</div>
+                </div>
+            </div>
+            <!-- 3 -->
+            <div class="product-card">
+                <img class="product-img" src="product2.jpg" alt="Tranh Safe Environment">
+                <div class="product-info">
+                    <div class="product-title">Tranh Safe Environment</div>
+                    <div class="product-desc">Tranh kính chủ đề bảo vệ môi trường, tông xanh nghệ thuật và ý nghĩa.</div>
+                </div>
+            </div>
+            <!-- 4 -->
+            <div class="product-card">
+                <img class="product-img" src="product11.jpg" alt="Chân nến thủy tinh nghệ thuật">
+                <div class="product-info">
+                    <div class="product-title">Chân nến nghệ thuật</div>
+                    <div class="product-desc">Đế nến bằng thủy tinh nhiều màu sắc, tạo điểm nhấn cho không gian ấm cúng.</div>
+                </div>
+            </div>
+            <!-- 5 -->
+            <div class="product-card">
+                <img class="product-img" src="product5.jpg" alt="Mô hình thuyền thủy tinh">
+                <div class="product-info">
+                    <div class="product-title">Mô hình thuyền thủy tinh</div>
+                    <div class="product-desc">Tác phẩm thuyền buồm chế tác từ kính, nổi bật bởi sắc xanh và chi tiết tinh xảo.</div>
+                </div>
+            </div>
+            <!-- 6 -->
+            <div class="product-card">
+                <img class="product-img" src="product9.jpg" alt="Trang trí cá vàng thủy tinh">
+                <div class="product-info">
+                    <div class="product-title">Trang trí cá vàng</div>
+                    <div class="product-desc">Chuỗi treo thủy tinh chủ đề cá vàng, sắc màu nhẹ nhàng, thích hợp trang trí cửa sổ.</div>
+                </div>
+            </div>
+            <!-- 7 -->
+            <div class="product-card">
+                <img class="product-img" src="product8.jpg" alt="Đèn treo sứa thủy tinh">
+                <div class="product-info">
+                    <div class="product-title">Đèn treo sứa thủy tinh</div>
+                    <div class="product-desc">Tác phẩm lấy cảm hứng từ sứa biển, phát sáng lung linh trong đêm.</div>
+                </div>
+            </div>
+            <!-- 8 -->
+            <div class="product-card">
+                <img class="product-img" src="product7.jpg" alt="Quả cầu hành tinh treo">
+                <div class="product-info">
+                    <div class="product-title">Hành tinh treo</div>
+                    <div class="product-desc">Bộ sưu tập hành tinh thu nhỏ bằng thủy tinh nhiều màu sắc, ánh sáng huyền ảo.</div>
+                </div>
+            </div>
+            <!-- 9 -->
+            <div class="product-card">
+                <img class="product-img" src="product6.jpg" alt="Trang trí hệ mặt trời">
+                <div class="product-info">
+                    <div class="product-title">Trang trí hệ mặt trời</div>
+                    <div class="product-desc">Bố cục các hành tinh và mặt trời bằng thủy tinh, tạo không gian nghệ thuật độc lạ.</div>
+                </div>
+            </div>
+            <!-- 10 -->
+            <div class="product-card">
+                <img class="product-img" src="product10.jpg" alt="Bướm thủy tinh nghệ thuật">
+                <div class="product-info">
+                    <div class="product-title">Bướm thủy tinh</div>
+                    <div class="product-desc">Tượng bướm bằng thủy tinh trong suốt, chuyển màu nhẹ nhàng dưới ánh sáng.</div>
+                </div>
+            </div>
+            <!-- 11 -->
+            <div class="product-card">
+                <img class="product-img" src="product4.jpg" alt="Chân nến 3 nhánh thủy tinh">
+                <div class="product-info">
+                    <div class="product-title">Chân nến 3 nhánh</div>
+                    <div class="product-desc">Đế nến thủy tinh nghệ thuật, phối màu pastel nhẹ, phù hợp trang trí tiệc tối.</div>
+                </div>
+            </div>
+            <!-- 12 -->
+            <div class="product-card">
+                <img class="product-img" src="product12.jpg" alt="Chuông gió cá thủy tinh">
+                <div class="product-info">
+                    <div class="product-title">Chuông gió cá biển</div>
+                    <div class="product-desc">Chuông gió thủy tinh chủ đề biển, điểm xuyết cá và sao biển nhỏ xinh.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ABOUT -->
+    <div id="about" class="about-section">
+        <div class="section-title">Về GLASSPHORIA</div>
+        <p>
+            <b>GLASSPHORIA</b> Chào mừng bạn đến với GLASSPHORIA , doanh nghiệp sáng tạo mới ra mắt từ bàn tay tài hoa của những sinh viên đam mê! Với sứ mệnh biến những mảnh thủy tinh tái chế thành những kiệt tác trang trí độc đáo, chúng tôi cam kết mang đến sản phẩm chất lượng cao, bền vững và đầy phong cách, tất cả đều được chế tác thủ công tỉ mỉ. Là startup trẻ trung của thế hệ Z, chúng tôi không chỉ hứa hẹn giá trị thẩm mỹ vượt trội mà còn triển vọng phát triển mạnh mẽ, với kế hoạch mở rộng dòng sản phẩm thân thiện môi trường, giúp bạn sở hữu không gian sống xanh sạch và đầu tư thông minh vào tương lai! 
+        </p>
+        <p>
+           Lý do nên chọn chúng tôi :
+Chất Lượng Cao, Bền Vững Lâu Dài
+Giá Cả Phải Chăng, Giá Trị Thêm Lớn
+Triển Vọng Phát Triển Mạnh Mẽ
+Trải Nghiệm Khách Hàng Đặc Biệt
+        </p>
+    </div>
+    <!-- CONTACT -->
+    <div id="contact" class="contact-section">
+        <div class="section-title">Liên hệ</div>
+        <p>
+            Nếu bạn quan tâm hoặc muốn đặt hàng riêng các sản phẩm nghệ thuật thủy tinh tại GLASSPHORIA, vui lòng liên hệ:<br>
+            <b>Email:</b> glassphoria.art@gmail.com<br>
+            <b>Facebook:</b> <a href="https://facebook.com/glassphoria" target="_blank">facebook.com/glassphoria</a><br>
+            <b>Instagram:</b> <a href="https://instagram.com/glassphoria" target="_blank">@glassphoria</a><br>
+            <b>SĐT:</b>012345678</a>
+        </p>
+    </div>
+    <!-- FOOTER -->
+</body>
+</html>
